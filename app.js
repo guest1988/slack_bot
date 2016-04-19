@@ -29,7 +29,7 @@ app.post('/checkin', function (req, res, next) {
     return res.status(200).end();
   }
 });
-app.post('/checkout', function (req, res, next) {
+/*app.post('/checkout', function (req, res, next) {
   var userName = req.body.user_name;
   //var body = req.body;
   var date = Date().toLocaleString();;
@@ -42,4 +42,4 @@ app.post('/checkout', function (req, res, next) {
   } else {
     return res.status(200).end();
   }
-});
+});*/
