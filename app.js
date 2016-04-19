@@ -15,12 +15,12 @@ app.listen(port, function () {
 });
 
 //creating slackbot
-app.post('/checkin', function (req, res, next) {
+app.post('/hello', function (req, res, next) {
   var userName = req.body.user_name;
   //var body = req.body;
-  var date = Date().toLocaleString();;
+  var date = new Date().toLocaleString();
   var botPayload = {
-    text : 'Hello ' + userName + ', you started to work on '+date;
+    text : 'Hello ' + userName + ', welcome to Devdactic Slack channel! I\'ll be your guide.'+date;
   };
   // Loop otherwise..
   if (userName !== 'slackbot') {
@@ -29,17 +29,3 @@ app.post('/checkin', function (req, res, next) {
     return res.status(200).end();
   }
 });
-/*app.post('/checkout', function (req, res, next) {
-  var userName = req.body.user_name;
-  //var body = req.body;
-  var date = Date().toLocaleString();;
-  var botPayload = {
-    text : 'Bye ' + userName + ', you finished  your  work on '+date;
-  };
-  // Loop otherwise..
-  if (userName !== 'slackbot') {
-    return res.status(200).json(botPayload);
-  } else {
-    return res.status(200).end();
-  }
-});*/
