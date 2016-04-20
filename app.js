@@ -49,9 +49,8 @@ app.post('/help', function (req, res, next) {
   var userName = req.body.user_name;
   
   var botPayload = {
-    text : "This bot has option: #checkin - count users checkins 
-    \n #checkout - count users checkouts \n #reseat - reset analititics by admin and 
-    \n #express - export analitics from db to local comp."};
+    text : "This bot has option: #checkin - count users checkins"+ 
+    "\n" +"#checkout - count users checkouts"};
   
   if (userName !== 'slackbot') {
     return res.status(200).json(botPayload);
