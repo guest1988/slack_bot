@@ -50,7 +50,7 @@ app.post('/help', function (req, res, next) {
   
   var botPayload = {
     text : "This bot has option: #checkin - count users checkins"+ 
-    "\n" +"#checkout - count users checkouts"};
+    "\r\n" +"#checkout - count users checkouts"};
   
   if (userName !== 'slackbot') {
     return res.status(200).json(botPayload);
