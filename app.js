@@ -14,7 +14,7 @@ app.listen(port, function () {
   console.log('Listening on port ' + port);
 });
 
-//creating slackbot for checkin
+
 app.post('/checkin', function (req, res, next) {
   var userName = req.body.user_name;
   var date = Date();
@@ -29,13 +29,27 @@ app.post('/checkin', function (req, res, next) {
   }
 });
 
-//creating slackbot for checkout
+
 app.post('/checkout', function (req, res, next) {
   var userName = req.body.user_name;
   var date = Date();
   var botPayload = {
     text : 'Bye ' + userName + ', you finished your work on '+date
   };
+  
+  if (userName !== 'slackbot') {
+    return res.status(200).json(botPayload);
+  } else {
+    return res.status(200).end();
+  }
+});
+
+
+app.post('/help', function (req, res, next) {
+  var userName = req.body.user_name;
+  
+  var botPayload = {
+    text : "This bot has option: #checkin \' #checkout \' #reseat and \' #express"};
   
   if (userName !== 'slackbot') {
     return res.status(200).json(botPayload);
