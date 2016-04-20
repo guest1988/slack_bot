@@ -19,9 +19,9 @@ app.post('/checkin', function (req, res, next) {
   var userName = req.body.user_name;
   var date = Date();
   var botPayload = {
-    text : 'Hello ' + userName + ', you came to work on '+date
+    text : 'Hello ' + userName + ', you came to work on '+date+' and '+ req.body
   };
-  console.log(req.body);
+  
   if (userName !== 'slackbot') {
     return res.status(200).json(botPayload);
   } else {
