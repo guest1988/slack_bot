@@ -14,14 +14,14 @@ app.listen(port, function () {
   console.log('Listening on port ' + port);
 });
 
-//creating slackbot
+//creating slackbot for checkin
 app.post('/checkin', function (req, res, next) {
   var userName = req.body.user_name;
   var date = Date();
   var botPayload = {
     text : 'Hello ' + userName + ', you came to work at '+date
   };
-  // Loop otherwise..
+  
   if (userName !== 'slackbot') {
     return res.status(200).json(botPayload);
   } else {
@@ -29,13 +29,14 @@ app.post('/checkin', function (req, res, next) {
   }
 });
 
+//creating slackbot for checkout
 app.post('/checkout', function (req, res, next) {
   var userName = req.body.user_name;
   var date = Date();
   var botPayload = {
     text : 'Bye ' + userName + ', you finished your work at '+date
   };
-  // Loop otherwise..
+  
   if (userName !== 'slackbot') {
     return res.status(200).json(botPayload);
   } else {
