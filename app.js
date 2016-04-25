@@ -65,31 +65,16 @@ app.post('/help', function (req, res, next) {
 //export 
 app.get('/export', function (req, res, next) {
   
-  var fields = ['car.make', 'car.model', 'price', 'color'];
-  
-  var myCars = [
-    {
-      "car": {"make": "Audi", "model": "A3"},
-      "price": 40000,
-      "color": "blue"
-    }, {
-      "car": {"make": "BMW", "model": "F20"},
-      "price": 35000,
-      "color": "black"
-    }, {
-      "car": {"make": "Porsche", "model": "9PA AF1"},
-      "price": 60000,
-      "color": "green"
-    }
-  ];
+  function saveAsFile() {
+      var user = {"name":"azraq","country":"egypt"};
+      var json = JSON.stringify(user);
+      var filename = 'user.json';
+      var mimetype = 'application/json';
+      res.setHeader('Content-Type', mimetype);
+      res.setHeader('Content-disposition','attachment; filename='+filename);
+      res.send( json );
+  }
 
-  //export jason to csv
-  json2csv({ data: myCars, fields: fields }, function(err, csv) {
-    if (err) console.log(err);
-    fs.writeFile('file.csv', csv, function(err) {
-      if (err) throw err;
-      console.log('file saved');
-      return res.status(200).json("file saved!!");
-    });
-  });    
+  saveAsFile(); 
+    
 });
