@@ -19,7 +19,7 @@ app.post('/checkin', function (req, res, next) {
   var userName = req.body.user_name;
   var date = Date();
   var botPayload = {
-    text : 'Hello ' + userName + ', you came to work on '+date+' and '+ req.body.oldest
+    text : 'Hello ' + userName + ', you came to work on '+date
   };
   
   if (userName !== 'slackbot') {
