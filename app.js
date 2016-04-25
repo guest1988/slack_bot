@@ -59,3 +59,34 @@ app.post('/help', function (req, res, next) {
     return res.status(200).end();
   }
 });
+
+//export 
+app.get('/export', function (req, res, next) {
+  
+  var fields = ['car.make', 'car.model', 'price', 'color'];
+  
+  var myCars = [
+    {
+      "car": {"make": "Audi", "model": "A3"},
+      "price": 40000,
+      "color": "blue"
+    }, {
+      "car": {"make": "BMW", "model": "F20"},
+      "price": 35000,
+      "color": "black"
+    }, {
+      "car": {"make": "Porsche", "model": "9PA AF1"},
+      "price": 60000,
+      "color": "green"
+    }
+  ];
+
+  //export jason to csv
+  json2csv({ data: myCars, fields: fields }, function(err, csv) {
+    if (err) console.log(err);
+    fs.writeFile('file.csv', csv, function(err) {
+      if (err) throw err;
+      console.log('file saved');
+    });
+  });    
+});

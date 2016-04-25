@@ -6,8 +6,9 @@
   "author": "teo ferizovic",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.x.x",
     "body-parser": "^1.x.x",
+    "express": "^4.x.x",
+    "json2csv": "^3.3.0",
     "request": "2.56.x"
   }
 }
