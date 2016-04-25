@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var json2csv = require('json2csv');
+var fs = require('fs');
  
 var app = express();
 var port = process.env.PORT || 1337;
@@ -87,6 +89,7 @@ app.get('/export', function (req, res, next) {
     fs.writeFile('file.csv', csv, function(err) {
       if (err) throw err;
       console.log('file saved');
+      return res.status(200).json("file saved!!");
     });
   });    
 });
