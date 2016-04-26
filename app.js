@@ -65,16 +65,45 @@ app.post('/help', function (req, res, next) {
 //export 
 app.get('/export', function (req, res, next) {
   
+  var fields = ['car', 'price', 'color'];
+  
+  var myCars = [
+    {
+      "car": "Audi",
+      "price": 40000,
+      "color": "blue"
+    }, {
+      "car": "BMW",
+      "price": 35000,
+      "color": "black"
+    }, {
+      "car": "Porsche",
+      "price": 60000,
+      "color": "green"
+    }, {
+      "car": "Fiat",
+      "price": 2500,
+      "color": "white"
+    }
+  ];
+  
+  var datas = '';
+  
+  json2csv({ data: myCars, fields: fields }, function(err, csv) {
+    if (err) console.log(err);
+    //console.log(csv);
+    datas = csv;
+  });
+
   function saveAsFile() {
-      var user = {"name":"azraq","country":"egypt"};
-      var json = JSON.stringify(user);
-      var filename = 'user.json';
-      var mimetype = 'application/json';
-      res.setHeader('Content-Type', mimetype);
-      res.setHeader('Content-disposition','attachment; filename='+filename);
-      res.send( json );
+    var exportData = datas;
+    var filename = 'snowfall_workers.csv';
+    var mimetype = 'application/csv';
+    res.setHeader('Content-Type', 'application/octet-stream');
+    res.setHeader('Content-disposition','attachment; filename='+filename);
+    res.send(exportData);
   }
 
-  saveAsFile(); 
+  saveAsFile();
     
 });
