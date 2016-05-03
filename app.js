@@ -31,10 +31,10 @@ app.post('/checkin', function (req, res, next) {
   }
 });
 
-app.post('/checkin/:id', function (req, res, next) {
+app.post('/aftercheckin', function (req, res, next) {
   var userName = req.body.user_name;
   var botPayload = {
-    text : 'Hello ' + userName + ', you came to work on '+req.params.id
+    text : 'Hello ' + userName + ', you came to work on '+req.body
   };
   if (userName !== 'slackbot') {
     return res.status(200).json(botPayload);
