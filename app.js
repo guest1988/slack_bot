@@ -25,7 +25,7 @@ app.post('/checkin', function (req, res, next) {
   };
   
   if (userName !== 'slackbot') {
-    return res.status(200).send('#checkin !!');
+    return res.status(200).json('#checkin !!');
   } else {
     return res.status(200).end();
   }
